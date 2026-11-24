@@ -7203,6 +7203,11 @@ or pandas.DataFrame
             y = [0, nr]
         elif len(args) == 3:
             x, y = args[:2]
+
+            # calls _pcolorargs which calls self._process_unit_info() in _base.py
+            # _process_unit_info() calls converter methods in axis.py, which convert inputs from whatever object datatype to supported types (e.g. floats)
+            x, y, C, _ = self._pcolorargs('pcolorfast', *args[:-1], C, shading='flat', kwargs=kwargs)
+            
             x = np.asarray(x)
             y = np.asarray(y)
             if x.ndim == 1 and y.ndim == 1:
