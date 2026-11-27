@@ -7207,7 +7207,8 @@ or pandas.DataFrame
 
             # calls _pcolorargs which calls self._process_unit_info() in _base.py
             # _process_unit_info() calls converter methods in axis.py, which convert inputs from whatever object datatype to supported types (e.g. floats)
-            x, y, C, _ = self._pcolorargs('pcolorfast', *args[:-1], C, shading='flat', kwargs=kwargs)
+            # x, y, C, _ = self._pcolorargs('pcolorfast', *args[:-1], C, shading='flat', kwargs=kwargs)
+            x, y = self._process_unit_info([("x", x), ("y", y)], kwargs)
             
             x = np.asarray(x)
             y = np.asarray(y)
